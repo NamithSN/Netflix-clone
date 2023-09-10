@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+
 import './App.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import LoginPage from './pages/LoginPage';
+import SignUpPage from './pages/SignUpPage';
+import Player from './pages/Player';
+import MoviePage from './pages/MoviePage';
+import Netflix from './pages/Netflix';
+import TvShow from './pages/TvShow';
+import Backgroundimage from './components/Backgroundimage';
+import Header from './components/Header';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route exact path="/login" element={<LoginPage></LoginPage>}></Route>
+      <Route exact path="/signup" element={<SignUpPage/>}></Route>
+      <Route exact path="/player" element={<Player/>}></Route>
+      <Route exact path="/movie" element={<MoviePage/>}></Route>
+      <Route exact path="/" element={<Netflix/>}></Route>
+      <Route exact path="/tv" element={<TvShow/>}></Route>
+    </Routes>
+    <Header></Header>
+    </BrowserRouter>
   );
 }
 
