@@ -27,10 +27,10 @@ const Card = () => {
                 <img src='https://tamil.behindwoods.com/tamil-movies-cinema-news-ta/images/kamal-haasan-vikram-movie-official-release-date-photos-pictures-stills.jpeg'
             alt='Movie Poster'
             onClick={()=>navigate('/player')}/>
-            <ReactPlayer url='https://www.youtube.com/watch?v=NXSigiaZ0W0' playing height='100%' width='100%' />
+            <ReactPlayer className='ReactPlayer' url='https://www.youtube.com/watch?v=NXSigiaZ0W0' playing height='100%' width='100%' />
                 </div>
                 <div className='info-container'>
-                    <h3 className='movie name' onClick={()=>navigate('/palyer')}>Vikram</h3>
+                    <h3 className='movie-name' onClick={()=>navigate('/palyer')}>Vikram</h3>
                     <div className='icons'>
                         <div className='controls'>
                             <IoPlayCircleSharp  title='play' onClick={()=>navigate('/palyer')}/>
@@ -62,8 +62,95 @@ const Card = () => {
   )
 }
 const CardContainer=styled.div`
-/* max-width: 230px; */
+margin-top: 1rem;
+max-width: 230px;
+width: 230px;
+height: 100%;
+cursor: pointer;
+position: relative;
 background-color: red;
+img{
+    border-radius: 0.2rem;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+.hover{
+    z-index: 99;
+    height: max-content;
+    width: 20rem;
+    position: absolute;
+    top: -18vh;
+    left: 0;
+    border-radius: 0.2rem;
+    border: 0.1rem solid gray;
+    background-color: #181818;
+    transition: 0.3s ease-in-out;
+    .img-video-wrapper{
+        position: relative;
+        height: 140px;
+        img{
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 0.3rem;
+            top: 0;
+            z-index: 4;
+            position: absolute;
+        }
+        .ReactPlayer{
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 0.3rem;
+            top: 0;
+            z-index: 4;
+            position: absolute;
+        }
+    }
+    .info-container{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.5rem;
+        .movie-name{
+            color: white;
+        }
+    }
+    .icons{
+        display: flex;
+        justify-content: space-between;
+        .controls{
+                display: flex;
+                gap: 0.5rem;
+        }
+    svg{
+        color: white;
+        border: 0.1rem solid white;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        &:hover{
+            color:red;
+        }
+    }
+}
+.genre{
+    display: flex;
+    color: white;
+    ul{
+        display: flex;
+        gap: 1rem;
+        li{
+            padding-right: 0.7rem;
+            &:first-of-type{
+                list-style-type: none;
+            }
+        }
+    }
+}
+}
 
 `
 export default Card
