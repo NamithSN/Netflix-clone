@@ -8,7 +8,7 @@ import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
 import { BiChevronDown } from "react-icons/bi";
 import { BsCheck } from "react-icons/bs";
 
-const Card = () => {
+export default React.memp(function ({movieData}) {
     const [onHovered, setOnHovered]=useState(false)
     const navigate=useNavigate()
   return (
@@ -16,7 +16,7 @@ const Card = () => {
     onMouseEnter={()=>setOnHovered(true)}
     onMouseLeave={()=>setOnHovered(false)}
     >
-        <img src='https://tamil.behindwoods.com/tamil-movies-cinema-news-ta/images/kamal-haasan-vikram-movie-official-release-date-photos-pictures-stills.jpeg'
+        <img src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
         alt='Movie Poster'
         onClick={()=>navigate('/player')}
         />
@@ -24,13 +24,14 @@ const Card = () => {
             onHovered &&(
             <div className='hover'>
                 <div className='img-video-wrapper'>
-                <img src='https://tamil.behindwoods.com/tamil-movies-cinema-news-ta/images/kamal-haasan-vikram-movie-official-release-date-photos-pictures-stills.jpeg'
-            alt='Movie Poster'
+                <img src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
             onClick={()=>navigate('/player')}/>
             <ReactPlayer className='ReactPlayer' url='https://www.youtube.com/watch?v=NXSigiaZ0W0' playing height='100%' width='100%' />
                 </div>
                 <div className='info-container'>
-                    <h3 className='movie-name' onClick={()=>navigate('/palyer')}>Vikram</h3>
+                    <h3 className='movie-name' onClick={()=>navigate('/palyer')}>
+                        {movieData.name}
+                    </h3>
                     <div className='icons'>
                         <div className='controls'>
                             <IoPlayCircleSharp  title='play' onClick={()=>navigate('/palyer')}/>
@@ -44,12 +45,12 @@ const Card = () => {
                         </div>
 
                     </div>
-                    <div className='genre'>
+                    <div className='genres'>
                         <ul>
-                            <li>Action</li>
-                            <li>Action</li>
-                            <li>Action</li>
-                        </ul>
+                {movieData.genres.map((genre)=>{
+                  <li>{genre}</li>
+                })}
+              </ul>
 
                     </div>
 
@@ -60,7 +61,7 @@ const Card = () => {
         }
     </CardContainer>
   )
-}
+})
 const CardContainer=styled.div`
 margin-top: 1rem;
 max-width: 230px;
@@ -68,7 +69,6 @@ width: 230px;
 height: 100%;
 cursor: pointer;
 position: relative;
-background-color: red;
 img{
     border-radius: 0.2rem;
     width: 100%;
@@ -153,4 +153,3 @@ img{
 }
 
 `
-export default Card
