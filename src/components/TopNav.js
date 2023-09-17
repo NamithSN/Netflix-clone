@@ -6,6 +6,7 @@ import { firebaseAuth } from "../utils/firebase-config";
 
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
+
 const TopNav = ({ isScrolled }) => {
   const navlinks = [
     { name: "Home", link: "/" },
@@ -13,7 +14,10 @@ const TopNav = ({ isScrolled }) => {
     { name: "My List", link: "/mylist" },
     { name: "Movies", link: "/movies" },
   ];
-  const navigate= useNavigate()
+
+
+  const navigate = useNavigate()
+
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (!currentUser) navigate("/login");
   });
@@ -40,7 +44,7 @@ const TopNav = ({ isScrolled }) => {
         </div>
 
         <div className="rightSide">
-          <button onClick={()=>signOut(firebaseAuth)}>
+          <button onClick={()=> signOut(firebaseAuth)}>
             <AiOutlineLogout />
           </button>
         </div>

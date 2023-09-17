@@ -8,7 +8,7 @@ import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
 import { BiChevronDown } from "react-icons/bi";
 import { BsCheck } from "react-icons/bs";
 
-export default React.memp(function ({movieData}) {
+export default React.memo(function ({movieData}) {
     const [onHovered, setOnHovered]=useState(false)
     const navigate=useNavigate()
   return (
